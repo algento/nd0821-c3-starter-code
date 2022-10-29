@@ -1,0 +1,4 @@
+[core]
+    remote = mldevops_data
+['remote "mldevops_data"']
+    url = s3://mlopsnd-bucket
