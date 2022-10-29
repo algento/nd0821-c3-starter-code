@@ -20,7 +20,7 @@ sys.path.insert(0, file_dir)
 
 # Add code to load in the data.
 logger.info('Read clean_census.csv')
-data = pd.read_csv(file_dir + '/../data/census.csv')
+data = pd.read_csv(file_dir + '/../data/clean_census.csv')
 # data = pd.read_csv(file_dir + '/../data/census.csv', sep=', ', engine='python')
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
