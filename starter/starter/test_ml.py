@@ -5,10 +5,10 @@ from sklearn.ensemble import RandomForestClassifier
 import pytest
 import os
 import sys
+
+sys.path.insert(0, "starter/starter")
 from ml.data import process_data
 from ml.model import train_model, compute_model_metrics, inference
-file_dir = os.path.dirname(os.path.abspath("__file__"))
-sys.path.insert(0, file_dir)
 
 cat_features = [
     "workclass",
@@ -27,7 +27,7 @@ def data():
     """
     Get Census data
     """
-    df = pd.read_csv("data/clean_census.csv")
+    df = pd.read_csv("starter/data/clean_census.csv")
     return df
 
 
@@ -56,8 +56,11 @@ def test_compute_model_metrics(data):
     predicts = [0, 1, 1, 0]
     precision, recall, fbeta = compute_model_metrics(y, predicts)
     print(precision, recall, fbeta)
-    assert abs(precision - 0.5) < 0.01 and abs(recall -
-                                               0.5) < 0.01 and abs(fbeta - 0.5) < 0.01
+    assert (
+        abs(precision - 0.5) < 0.01
+        and abs(recall - 0.5) < 0.01
+        and abs(fbeta - 0.5) < 0.01
+    )
 
 
 def test_inference(data):
