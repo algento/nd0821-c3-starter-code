@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 import pandas as pd
 from joblib import load
 import sys
-import uvicorn
+import os
 
 sys.path.insert(0, "starter/starter")
 from ml.data import process_data
@@ -26,7 +26,6 @@ data = pd.read_csv("starter/data/clean_census.csv")
 model = load("starter/model/census_rfmodel.pkl")
 encoder = load("starter//model/census_encoder.pkl")
 lb = load("starter/model/census_lb.pkl")
-print(data.head(5))
 
 # Instantiate the app.
 app = FastAPI()
@@ -72,8 +71,10 @@ async def inference_from_sample(sample: DataSample):
     )
     predict = inference(model, X)[0]
     return "<=50K" if predict == 0 else ">50K"
-    # return "<=50K"
 
 
-# if __name__ == "__main__":
-#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+if "DYNO" in os.environ and os.path.isdir(".dvc"):
+    os.system("dvc config core.no_scm true")
+    if os.system("dvc pull") != 0:
+        exit("dvc pull failed")
+    os.system("rm -r .dvc .apt/usr/lib/dvc")
