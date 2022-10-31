@@ -6,6 +6,11 @@ Working in a command line environment is recommended for ease of use with git an
     * conda create -n [envname] "python=3.8" scikit-learn pandas numpy pytest jupyter jupyterlab fastapi uvicorn -c conda-forge
     * Install git either through conda (“conda install git”) or through your CLI, e.g. sudo apt-get git.
 
+```bash
+conda create -n mlops_c3_prj --file starter/requirements.txt
+conda activate mlops_c3_prj
+```
+
 ## Repositories
 * Create a directory for the project and initialize git.
     * As you work on the code, continually commit changes. Trained models you want to use in production must be committed to GitHub.
@@ -25,6 +30,12 @@ Working in a command line environment is recommended for ease of use with git an
     * Suggestion: for simplicity, the function can just output the performance on slices of just the categorical features.
 * Write a model card using the provided template.
 
+```python
+# from repository root
+cd starter/starter
+python train_model.py
+```
+
 # API Creation
 *  Create a RESTful API using FastAPI this must implement:
     * GET on the root giving a welcome message.
@@ -41,3 +52,8 @@ Working in a command line environment is recommended for ease of use with git an
     * Hint: think about how paths will differ in your local environment vs. on Heroku.
     * Hint: development in Python is fast! But how fast you can iterate slows down if you rely on your CI/CD to fail before fixing an issue. I like to run flake8 locally before I commit changes.
 * Write a script that uses the requests module to do one POST on your live API.
+
+```python
+# from repository root
+python request_post.py
+```
