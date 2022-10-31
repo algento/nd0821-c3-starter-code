@@ -18,7 +18,7 @@ data = {
     "native_country": "United-States",
 }
 
-response = requests.post("https://mldevopsnd-app.herokuapp.com/", json=data)
+response = requests.post("https://mldevopnd-app.herokuapp.com/", json=data)
 
 print(response.status_code)
 print(response.json())
