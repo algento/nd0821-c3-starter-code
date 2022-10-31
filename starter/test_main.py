@@ -8,6 +8,9 @@ client = TestClient(app)
 def test_welcome_message():
     r = client.get("/")
     assert r.status_code == 200
+    assert r.json() == {
+        "welcome": "This is test api for MLDevOps Nanodegree for Deploying a ML model on Heroku with FastAPI.\n \t See the census.csv for inference"
+    }
 
 
 def test_inference_for_less_and_equal_than_50k():
